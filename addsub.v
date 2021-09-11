@@ -16,17 +16,15 @@ module addsub (input [31:0] inA,
                output [31:0] out,
                output overflow);
 
-wire [31:0] negB, B_sel;
+wire [31:0] B_sel;
 
-// assign negB=~inB;
+// negate input B if in subtraction mode
 genvar i;
 generate
-for(i = 0; i<32; i = i+1) begin: gen_not_B
-    not u_not(negB[i],inB[i]);
+for(i = 0; i<32; i = i+1) begin: gen_xor_B
+    xor u_xor(B_sel[i],inB[i],EN_SUB);
 end
 endgenerate
-
-assign B_sel=EN_SUB?negB:inB;
 
 myPPA adder(
     .A(inA),

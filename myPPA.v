@@ -35,12 +35,9 @@ assign l0_P[0] = 0;
 // preparing Genaration and Propagation signals from input operands
 genvar i;
 generate
-for(i = 0; i<32; i = i+1) begin: gen_pg_gen
-    pg_gen u_pg_gen(
-    .A(A[i]),
-    .B(B[i]),
-    .G(l0_G[i+1]),
-    .P(l0_P[i+1]));
+for(i = 0; i<32; i = i+1) begin: gen_pg
+    and and0(l0_G[i+1],A[i],B[i]);
+    xor xor0(l0_P[i+1],A[i],B[i]);
 end
 endgenerate
 

@@ -9,7 +9,20 @@
 
 ## Description
 
-Still under discussion.
+Module tree:
+
+```bash
+alu
+├───addsub
+│   └───myPPA
+│       └───op_o
+├───lt
+├───ne
+├───bitwise_and
+├───bitwise_or
+├───sll
+└───sra
+```
 
 ## Bugs and Issues
 
