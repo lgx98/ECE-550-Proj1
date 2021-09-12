@@ -15,7 +15,10 @@ Module tree:
 alu
 ├───addsub
 │   └───myPPA
-│       └───op_o
+│       └───prefix_network_KS -- kind of brute-force, but worked
+│       │   └───op_o
+│       └───//prefix_network_BK -- high delay, deprecated
+│           └───op_o
 ├───lt
 ├───ne
 ├───bitwise_and
@@ -26,4 +29,4 @@ alu
 
 ## Bugs and Issues
 
-The worse case gate propagation delay of the adder module exceeds 20ns.
+Nothing at the moment.
