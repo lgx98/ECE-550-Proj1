@@ -264,6 +264,6 @@ endgenerate
 
 assign Cout=l9_G[32];
 
-xor xor_ovf(ovf,l9_G[31],l9_G[30]);
+xor xor_ovf(ovf,l9_G[32],l9_G[31]);
 
 endmodule

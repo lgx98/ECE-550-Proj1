@@ -26,4 +26,4 @@ alu
 
 ## Bugs and Issues
 
-Nothing found yet.
+The worse case gate propagation delay of the adder module exceeds 20ns.
