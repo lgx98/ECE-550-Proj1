@@ -195,6 +195,37 @@ module alu_tb();
                 $display("**Error in SUB (test 10); expected: %h, actual: %h", 32'h00000000, data_result);
                 errors = errors + 1;
             end
+            
+            // test worst case carry propagation delay
+            @(negedge clock);
+            assign data_operandA = 32'h00000000;
+            assign data_operandB = 32'hFFFFFFFF;
+
+            @(negedge clock);
+            if(data_result !== 32'h00000001) begin
+                $display("**Error in SUB (test 2a); expected: %b, actual: %b", 32'h00000001, data_result);
+                errors = errors + 1;
+            end
+
+            @(negedge clock);
+            assign data_operandA = 32'h00000000;
+            assign data_operandB = 32'h00000000;
+
+            @(negedge clock);
+            if(data_result !== 32'h00000000) begin
+                $display("**Error in SUB (test 2b); expected: %b, actual: %b", 32'h00000000, data_result);
+                errors = errors + 1;
+            end
+
+            @(negedge clock);
+            assign data_operandA = 32'h00000000;
+            assign data_operandB = 32'hFFFFFFFF;
+
+            @(negedge clock);
+            if(data_result !== 32'h00000001) begin
+                $display("**Error in SUB (test 2a); expected: %b, actual: %b", 32'h00000001, data_result);
+                errors = errors + 1;
+            end
         end
     endtask
 
