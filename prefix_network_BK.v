@@ -1,14 +1,19 @@
+/*
+ this module implements the carry generation network of a Brent-Kung adder[1].
+ 
+ Reference:
+ [1] Brent and Kung, "A Regular Layout for Parallel Adders," in IEEE Transactions on Computers, vol. C-31, no. 3, pp. 260-264, March 1982, doi: 10.1109/TC.1982.1675982.
+ */
 module prefix_network_BK (
-    input [31:0] inG,
-    input [31:0] inP,
+    input [30:0] inG,
+    input [30:0] inP,
     input Cin,
-    output [31:0] Carry,
-    output Cout);
+    output [31:0] Carry);
 
 // Level 0
 // Generate and Propagate signal wires
-wire [32:0] l0_G;
-wire [32:0] l0_P;
+wire [31:0] l0_G;
+wire [31:0] l0_P;
 
 // by definition, the input Generate signal is Carry-In, and the input Propagate signal is 0.
 assign l0_G = {inG, Cin};
@@ -16,13 +21,13 @@ assign l0_P = {inP, 1'b0};
 
 // Level 1
 // Generate and Propagate signal wires
-wire [32:0] l1_G;
-wire [32:0] l1_P;
+wire [31:0] l1_G;
+wire [31:0] l1_P;
 
 genvar i;
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l1
+for(i = 0; i<32; i = i+1) begin: gen_l1
     if (i%2==1) begin
         op_o u_op_o(
             .Gh(l0_G[i]),
@@ -41,12 +46,12 @@ endgenerate
 
 // Level 2
 // Generate and Propagate signal wires
-wire [32:0] l2_G;
-wire [32:0] l2_P;
+wire [31:0] l2_G;
+wire [31:0] l2_P;
 
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l2
+for(i = 0; i<32; i = i+1) begin: gen_l2
     if (i%4==3) begin
         op_o u_op_o(
             .Gh(l1_G[i]),
@@ -65,12 +70,12 @@ endgenerate
 
 // Level 3
 // Generate and Propagate signal wires
-wire [32:0] l3_G;
-wire [32:0] l3_P;
+wire [31:0] l3_G;
+wire [31:0] l3_P;
 
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l3
+for(i = 0; i<32; i = i+1) begin: gen_l3
     if (i%8==7) begin
         op_o u_op_o(
             .Gh(l2_G[i]),
@@ -88,12 +93,12 @@ endgenerate
 
 // Level 4
 // Generate and Propagate signal wires
-wire [32:0] l4_G;
-wire [32:0] l4_P;
+wire [31:0] l4_G;
+wire [31:0] l4_P;
 
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l4
+for(i = 0; i<32; i = i+1) begin: gen_l4
     if (i%16==15) begin
         op_o u_op_o(
             .Gh(l3_G[i]),
@@ -111,12 +116,12 @@ endgenerate
 
 // Level 5
 // Generate and Propagate signal wires
-wire [32:0] l5_G;
-wire [32:0] l5_P;
+wire [31:0] l5_G;
+wire [31:0] l5_P;
 
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l5
+for(i = 0; i<32; i = i+1) begin: gen_l5
     if (i%32==31) begin
         op_o u_op_o(
             .Gh(l4_G[i]),
@@ -135,12 +140,12 @@ endgenerate
 
 // Level 6
 // Generate and Propagate signal wires
-wire [32:0] l6_G;
-wire [32:0] l6_P;
+wire [31:0] l6_G;
+wire [31:0] l6_P;
 
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l6
+for(i = 0; i<32; i = i+1) begin: gen_l6
     if ((i%16==7)&&(i>=16)) begin
         op_o u_op_o(
             .Gh(l5_G[i]),
@@ -158,12 +163,12 @@ endgenerate
 
 // Level 7
 // Generate and Propagate signal wires
-wire [32:0] l7_G;
-wire [32:0] l7_P;
+wire [31:0] l7_G;
+wire [31:0] l7_P;
 
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l7
+for(i = 0; i<32; i = i+1) begin: gen_l7
     if ((i%8==3)&&(i>=8)) begin
         op_o u_op_o(
             .Gh(l6_G[i]),
@@ -181,12 +186,12 @@ endgenerate
 
 // Level 8
 // Generate and Propagate signal wires
-wire [32:0] l8_G;
-wire [32:0] l8_P;
+wire [31:0] l8_G;
+wire [31:0] l8_P;
 
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l8
+for(i = 0; i<32; i = i+1) begin: gen_l8
     if ((i%4==1)&&(i>=4)) begin
         op_o u_op_o(
             .Gh(l7_G[i]),
@@ -204,12 +209,12 @@ endgenerate
 
 // Level 9
 // Generate and Propagate signal wires
-wire [32:0] l9_G;
-wire [32:0] l9_P;
+wire [31:0] l9_G;
+wire [31:0] l9_P;
 
 // generate filled black squares
 generate
-for(i = 0; i<=32; i = i+1) begin: gen_l9
+for(i = 0; i<32; i = i+1) begin: gen_l9
     if ((i%2==0)&&(i>=2)) begin
         op_o u_op_o(
             .Gh(l8_G[i]),
@@ -226,6 +231,5 @@ end
 endgenerate
 
 assign Carry=l9_G[31:0];
-assign Cout=l9_G[32];
 
 endmodule

@@ -1,7 +1,7 @@
 /*
  this module implements an adder for 32 bit signed int
  currently, it is a Brent-Kung adder[1], 
- it may become a hybrid between Brent-Kung[1], Sklansky[2] and Koggl-Stone[3] to achieve better tradeoff
+ it may become a hybrid between Brent-Kung[1], Sklansky[2] and Kogge-Stone[3] to achieve better tradeoff
  the plan is to design a (2,1,1) prefix network according to the taxomony proposed by Harris[4]
  
  . overflow is 1 when:
@@ -40,12 +40,14 @@ endgenerate
 
 // --- Prefix Network ---
 wire [31:0] Carry;
+/* We will generate the highest carry bit(Cout) in post-computation network
+   the prefix network generates carry bits to determine the out put S[31:0]
+*/
 prefix_network_BK prefix_network(
-    .inG(Gin),
-    .inP(Pin),
+    .inG(Gin[30:0]),
+    .inP(Pin[30:0]),
     .Cin(Cin),
-    .Carry(Carry),
-    .Cout(Cout));
+    .Carry(Carry));
 
 // --- Post-computation Network ---
 generate
@@ -58,5 +60,13 @@ end
 endgenerate
 
 xor xor_ovf(ovf,Cout,Carry[31]);
+
+wire and_out;
+
+/* generate cout
+assign cout=Gin[31]|(Pin[31]&Carry[31]);
+*/
+and and0(and_out,Pin[31],Carry[31]);
+or or0(Cout,Gin[31],and_out);
 
 endmodule
