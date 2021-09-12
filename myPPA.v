@@ -50,7 +50,15 @@ prefix_network_BK prefix_network(
     .Cin(Cin),
     .Carry(Carry));
 */
+/*
 prefix_network_KS prefix_network(
+    .inG(Gin[30:0]),
+    .inP(Pin[30:0]),
+    .Cin(Cin),
+    .Carry(Carry));
+*/
+
+prefix_network_SK prefix_network(
     .inG(Gin[30:0]),
     .inP(Pin[30:0]),
     .Cin(Cin),

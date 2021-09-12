@@ -15,7 +15,9 @@ Module tree:
 alu
 ├───addsub
 │   └───myPPA
-│       └───prefix_network_KS -- kind of brute-force, but worked
+│       └───prefix_network_SK -- even faster
+│           └───op_o
+│       └───//prefix_network_KS -- kind of brute-force, but worked
 │       │   └───op_o
 │       └───//prefix_network_BK -- high delay, deprecated
 │           └───op_o
