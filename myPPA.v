@@ -1,6 +1,6 @@
 /*
- this module implements an adder for 32 bit signed int
- currently, it is a Brent-Kung adder[1], 
+ this module implements a parallel prefix adder for 32 bit signed int
+ currently, it is a Sklansky adder[2], 
  it may become a hybrid between Brent-Kung[1], Sklansky[2] and Kogge-Stone[3] to achieve better tradeoff
  the plan is to design a (2,1,1) prefix network according to the taxomony proposed by Harris[4]
  
