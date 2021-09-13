@@ -1,13 +1,13 @@
 # ALU - ADD/SUB/CMP
 
-## Group Members
+## 👨‍💻 Group Members
 
 |Name|NetID|
 |---|---|
 |Guangxuan Li|gl137|
 |Zhigang Wei|zw261|
 
-## Description
+## 📝 Description
 
 Module tree:
 
@@ -48,7 +48,7 @@ alu
 
 - [ ] sra.v:  not implemented yet, dummy code.
 
-## Bugs and Issues
+## 🐞 Bugs and Issues
 
 Nothing at the moment.
 
