@@ -290,6 +290,19 @@ module alu_tb();
                 $display("**Error in SRA (test 12); expected: %h, actual: %h", 32'h00000000, data_result);
                 errors = errors + 1;
             end
+
+            for (index = 0; index < 5; index = index + 1) begin
+                @(negedge clock);
+                assign data_operandA = 32'h80000000;
+                assign ctrl_shiftamt = 5'b00001<<index;
+                assign data_expected = ~((~data_operandA)>>ctrl_shiftamt);
+                
+                @(negedge clock);
+                if(data_result !== data_expected) begin
+                    $display("**Error in SLL (test 20 part %d); expected: %h, actual: %h", index, data_expected, data_result);
+                    errors = errors + 1;
+                end
+            end
         end
     endtask
 
