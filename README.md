@@ -44,9 +44,9 @@ alu
 
 - [ ] bitwise_or.v: not implemented yet, dummy code.
 
-- [ ] sll.v:  not implemented yet, dummy code.
+- [x] sll.v: logical shift left.
 
-- [ ] sra.v:  not implemented yet, dummy code.
+- [x] sra.v: arithetic shift right.
 
 ## 🐞 Bugs and Issues
 
