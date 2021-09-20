@@ -2,7 +2,7 @@
  this module implements bitwise OR operation for 32 bit vectors
  assign out = inA | inB;
  */
-module bitwise_and (input [31:0] inA,
+module bitwise_or (input [31:0] inA,
                     input [31:0] inB,
                     output [31:0] out);						  
 		genvar i;

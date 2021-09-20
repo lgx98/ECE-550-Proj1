@@ -32,8 +32,8 @@ for(i = 0; i<32; i = i+1) begin: gen_l1
         op_o u_op_o(
             .Gh(l0_G[i]),
             .Ph(l0_P[i]),
-            .Gl(l0_G[(i&1)-1]),
-            .Pl(l0_P[(i&1)-1]),
+            .Gl(l0_G[(i|1)-1]),
+            .Pl(l0_P[(i|1)-1]),
             .Go(l1_G[i]),
             .Po(l1_P[i]));
     end else begin
@@ -56,8 +56,8 @@ for(i = 0; i<32; i = i+1) begin: gen_l2
         op_o u_op_o(
             .Gh(l1_G[i]),
             .Ph(l1_P[i]),
-            .Gl(l1_G[(i&3)-2]),
-            .Pl(l1_P[(i&3)-2]),
+            .Gl(l1_G[(i|3)-2]),
+            .Pl(l1_P[(i|3)-2]),
             .Go(l2_G[i]),
             .Po(l2_P[i]));
     end else begin
@@ -80,8 +80,8 @@ for(i = 0; i<32; i = i+1) begin: gen_l3
         op_o u_op_o(
             .Gh(l2_G[i]),
             .Ph(l2_P[i]),
-            .Gl(l2_G[(i&7)-4]),
-            .Pl(l2_P[(i&7)-4]),
+            .Gl(l2_G[(i|7)-4]),
+            .Pl(l2_P[(i|7)-4]),
             .Go(l3_G[i]),
             .Po(l3_P[i]));
     end else begin
@@ -104,8 +104,8 @@ for(i = 0; i<32; i = i+1) begin: gen_l4
         op_o u_op_o(
             .Gh(l3_G[i]),
             .Ph(l3_P[i]),
-            .Gl(l3_G[(i&15)-8]),
-            .Pl(l3_P[(i&15)-8]),
+            .Gl(l3_G[(i|15)-8]),
+            .Pl(l3_P[(i|15)-8]),
             .Go(l4_G[i]),
             .Po(l4_P[i]));
     end else begin
@@ -128,8 +128,8 @@ for(i = 0; i<32; i = i+1) begin: gen_l5
         op_o u_op_o(
             .Gh(l4_G[i]),
             .Ph(l4_P[i]),
-            .Gl(l4_G[(i&31)-16]),
-            .Pl(l4_P[(i&31)-16]),
+            .Gl(l4_G[(i|31)-16]),
+            .Pl(l4_P[(i|31)-16]),
             .Go(l5_G[i]),
             .Po(l5_P[i]));
     end else begin
