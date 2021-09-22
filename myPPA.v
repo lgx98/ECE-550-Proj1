@@ -43,20 +43,20 @@ wire [31:0] Carry;
 /* We will generate the highest carry bit(Cout) in post-computation network
    the prefix network generates carry bits to determine the out put S[31:0]
 */
-
+/*
 prefix_network_BK prefix_network(
     .inG(Gin[30:0]),
     .inP(Pin[30:0]),
     .Cin(Cin),
     .Carry(Carry));
+*/
 
-/*
 prefix_network_KS prefix_network(
     .inG(Gin[30:0]),
     .inP(Pin[30:0]),
     .Cin(Cin),
     .Carry(Carry));
-*/
+
 /*
 prefix_network_SK prefix_network(
     .inG(Gin[30:0]),
