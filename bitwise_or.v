@@ -8,7 +8,7 @@ module bitwise_or (input [31:0] inA,
 		genvar i;
 		generate 						  
   for(i=0; i<32; i = i+1) begin: gen_bitwise_or
-		and u_or (out[i], inA[i], inB[i]);					  
+		or u_or (out[i], inA[i], inB[i]);					  
 		end						  
 		endgenerate
 endmodule
